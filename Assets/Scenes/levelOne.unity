@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 884580022}
   - component: {fileID: 884580021}
   - component: {fileID: 884580020}
+  - component: {fileID: 884580023}
   m_Layer: 5
   m_Name: Slick
   m_TagString: Untagged
@@ -779,6 +780,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884580018}
   m_CullTransparentMesh: 1
+--- !u!114 &884580023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884580018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5006229ca3546a4196e31b91885637c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMagnitude: 75
 --- !u!1 &1290058964
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898db36d0118d234691f5efe9edc3733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 884580023}
   speed: 5
 --- !u!1 &1950629237
 GameObject:
