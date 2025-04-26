@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
 
     // Booleano para verificar si el jugador está en el suelo
-    private bool isGrounded = false;
+    private bool isGrounded = true;
 
     // Referencia al componente Rigidbody2D
     private Rigidbody2D rb;
