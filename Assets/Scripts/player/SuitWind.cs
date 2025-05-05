@@ -9,4 +9,6 @@ public class SuitWind : SuitBase
         Debug.Log("¡Habilidad de viento activada!");
         // Aquí puedes poner el comportamiento real de viento
     }
+
+
 }

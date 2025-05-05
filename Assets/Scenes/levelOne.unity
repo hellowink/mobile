@@ -2753,7 +2753,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 884580023}
-  speed: 5
+  speed: 8
 --- !u!114 &1711660440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1711660434}
-  jumpForce: 10
+  jumpForce: 8
 --- !u!114 &1711660441
 MonoBehaviour:
   m_ObjectHideFlags: 0

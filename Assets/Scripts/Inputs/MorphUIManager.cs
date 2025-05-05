@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,17 +9,18 @@ public class MorphUIManager : MonoBehaviour
     public Button morphButton;
     public Button suit1Button;
     public Button suit2Button;
-    public GameObject player; // El GameObject del jugador
-    public Sprite windSuitSprite; // Sprite del traje viento
-    public Sprite iceSuitSprite; // Sprite del traje hielo
+    public GameObject player;
+    public Sprite windSuitSprite;
+    public Sprite iceSuitSprite;
     
 
     private SpriteRenderer playerSpriteRenderer;
+    private PlayerJump playerJump;
 
     void Start()
     {
-        // Obtener el SpriteRenderer del hijo del jugador (asumimos que es un hijo con SpriteRenderer)
         playerSpriteRenderer = player.GetComponentInChildren<SpriteRenderer>();
+        playerJump = player.GetComponent<PlayerJump>(); // Accede al script de salto
 
         suitSelectionPanel.SetActive(false);
 
@@ -38,27 +39,27 @@ public class MorphUIManager : MonoBehaviour
         suitSelectionPanel.SetActive(false);
         Debug.Log($"Has seleccionado el traje: {suitName}");
 
-        // Eliminar los scripts existentes de forma segura
-        if (player.GetComponent<DefaultSuit>() != null)
-            Destroy(player.GetComponent<DefaultSuit>());
+        // Eliminar los scripts existentes
+        Destroy(player.GetComponent<DefaultSuit>());
+        Destroy(player.GetComponent<SuitWind>());
+        Destroy(player.GetComponent<SuitIce>());
 
-        if (player.GetComponent<SuitWind>() != null)
-            Destroy(player.GetComponent<SuitWind>());
-
-        if (player.GetComponent<SuitIce>() != null)
-            Destroy(player.GetComponent<SuitIce>());
-
-        // Cambiar el sprite dependiendo del traje
         switch (suitName)
         {
             case "SuitWind":
                 player.AddComponent<SuitWind>();
-                playerSpriteRenderer.sprite = windSuitSprite; // Cambiar el sprite
+                playerSpriteRenderer.sprite = windSuitSprite;
+               
+
+                playerJump.jumpForce = 15f; // 💨 Aumenta fuerza de salto
                 break;
+
             case "SuitIce":
                 player.AddComponent<SuitIce>();
-                playerSpriteRenderer.sprite = iceSuitSprite; // Cambiar el sprite
-                
+                playerSpriteRenderer.sprite = iceSuitSprite;
+               
+
+                playerJump.jumpForce = 8f; // ❄️ Valor por defecto
                 break;
         }
     }
