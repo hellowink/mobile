@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - stage
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - cheackpoint
   - Water
   - UI
   - 
