@@ -20,7 +20,7 @@ public class menuControl : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("levelOne"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
+        SceneManager.LoadScene("levelSelection"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
     }
 
     public void ExitGame()

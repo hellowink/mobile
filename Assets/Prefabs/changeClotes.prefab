@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1682181531105849372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5782180952837617150}
+  - component: {fileID: 6480887450895507280}
+  m_Layer: 0
+  m_Name: changeClotes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5782180952837617150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682181531105849372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 473.63876, y: 298.0515, z: -2.1648068}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6480887450895507280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682181531105849372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce0df8045c7e1d45bb34a67edc8200c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suitSelectionPanel: {fileID: 0}
+  morphButton: {fileID: 0}
+  suit1Button: {fileID: 0}
+  suit2Button: {fileID: 0}
+  player: {fileID: 0}
+  windSuitSprite: {fileID: 21300000, guid: 0719b7a59b189324d9ec3f3d8266ae71, type: 3}
+  iceSuitSprite: {fileID: 21300000, guid: 5d2304e7cf0b3ec4798ee4b9a47be59d, type: 3}

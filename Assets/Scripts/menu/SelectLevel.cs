@@ -16,4 +16,19 @@ public class SelectLevel : MonoBehaviour
        
         
     }
+
+    public void PlayLevelOne()
+    {
+        SceneManager.LoadScene("levelOne"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
+    }
+
+    public void PlayLevelTwo()
+    {
+        SceneManager.LoadScene("levelTwo"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
+    }
+
+    public void PlayLevelThree()
+    {
+        SceneManager.LoadScene("levelThree"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
+    }
 }
