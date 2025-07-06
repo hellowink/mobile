@@ -8,6 +8,7 @@ TagManager:
   - stage
   - Checkpoint
   - Portal
+  - Ingredient
   layers:
   - Default
   - TransparentFX
