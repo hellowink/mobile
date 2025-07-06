@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6374447041606876379}
   - component: {fileID: 7602926937250161346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 96e48e83b1c4c574192d642721cdf919, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
