@@ -414,8 +414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerAnchor: {fileID: 741971591}
   baseZoom: 5
-  zoomPerIngredient: 5
+  zoomPerIngredient: 0.2
   maxZoom: 10
+  verticalOffset: 3
+  centerX: 0
+  smoothSpeed: 5
 --- !u!1001 &9207643220325387419
 PrefabInstance:
   m_ObjectHideFlags: 0

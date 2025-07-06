@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class DynamicCameraZoom : MonoBehaviour
 {
-    public Transform towerAnchor; // Asigná el mismo TowerAnchor
-    public float baseZoom = 5f; // Zoom base inicial
-    public float zoomPerIngredient = 0.2f; // Cuánto alejar por cada ingrediente
-    public float maxZoom = 10f; // Zoom máximo permitido
+   public Transform towerAnchor;   // Donde se apilan los ingredientes
+    public float baseZoom = 5f;     // Zoom inicial
+    public float zoomPerIngredient = 0.2f; // Cuánto aleja por cada ingrediente
+    public float maxZoom = 12f;
 
-    private int lastIngredientCount = 0;
+    public float verticalOffset = 3f;  // Cuánto más arriba de la torre mostrar
+    public float centerX = 0f;         // X fija de la cámara
+    public float smoothSpeed = 5f;
 
-    void Update()
+    void LateUpdate()
     {
         int ingredientCount = towerAnchor.childCount;
 
-        if (ingredientCount != lastIngredientCount)
-        {
-            float newZoom = baseZoom + ingredientCount * zoomPerIngredient;
-            newZoom = Mathf.Min(newZoom, maxZoom);
+        // Calcular nuevo zoom
+        float newZoom = baseZoom + ingredientCount * zoomPerIngredient;
+        newZoom = Mathf.Min(newZoom, maxZoom);
+        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, newZoom, Time.deltaTime * smoothSpeed);
 
-            // Transición suave
-            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, newZoom, Time.deltaTime * 5f);
+        // Calcular nueva posición Y
+        float newY = towerAnchor.position.y + verticalOffset + ingredientCount * zoomPerIngredient;
 
-            lastIngredientCount = ingredientCount;
-        }
+        // Aplicar nueva posición (solo cambia en Y, X es fija)
+        Vector3 targetPos = new Vector3(centerX, newY, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * smoothSpeed);
     }
 }
-
