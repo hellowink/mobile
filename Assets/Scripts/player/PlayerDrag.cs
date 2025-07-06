@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class PlayerDrag : MonoBehaviour
 {
-    private Vector3 offset;
+     private Vector3 offset;
     private Camera cam;
     private bool isDragging = false;
     private float halfColliderWidth;
+
+    [Header("Configuración de Deslizamiento")]
+    [Range(1f, 20f)]
+    public float slideSpeed = 10f; // Velocidad de seguimiento (ajustable)
+
+    private Vector3 targetPosition;
 
     void Start()
     {
         cam = Camera.main;
 
-        // Obtener mitad del ancho del collider en unidades del mundo
+        // Calcular el ancho del collider
         BoxCollider2D col = GetComponent<BoxCollider2D>();
         if (col != null)
         {
@@ -23,6 +29,9 @@ public class PlayerDrag : MonoBehaviour
         {
             Debug.LogWarning("BoxCollider2D no encontrado en el Player.");
         }
+
+        // Inicializar posición objetivo
+        targetPosition = transform.position;
     }
 
     void Update()
@@ -47,17 +56,16 @@ public class PlayerDrag : MonoBehaviour
                 case TouchPhase.Moved:
                     if (isDragging)
                     {
-                        Vector3 newPos = touchPosWorld + offset;
+                        targetPosition = touchPosWorld + offset;
 
-                        // Limitar usando el tamaño del collider
+                        // Limitar movimiento según el ancho del collider
                         float screenHalfWidth = cam.orthographicSize * cam.aspect;
                         float minX = -screenHalfWidth + halfColliderWidth;
                         float maxX = screenHalfWidth - halfColliderWidth;
 
-                        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
-
-                        // Solo mueve en X
-                        transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+                        targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
+                        targetPosition.y = transform.position.y;
+                        targetPosition.z = transform.position.z;
                     }
                     break;
 
@@ -67,5 +75,8 @@ public class PlayerDrag : MonoBehaviour
                     break;
             }
         }
+
+        // Movimiento suave hacia el objetivo
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * slideSpeed);
     }
 }
