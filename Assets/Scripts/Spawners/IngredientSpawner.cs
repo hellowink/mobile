@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class IngredientSpawner : MonoBehaviour
 {
-   public string[] ingredientNames = { "Tomato" };
+   [Header("Probabilidades de ingredientes")]
+    public List<IngredientProbability> ingredientProbabilities;
+
+    [Header("Spawning")]
     public float spawnInterval = 1.5f;
     public float minX = -3f;
     public float maxX = 3f;
@@ -17,10 +20,13 @@ public class IngredientSpawner : MonoBehaviour
 
     void SpawnIngredient()
     {
-        string randomType = ingredientNames[Random.Range(0, ingredientNames.Length)];
-
-        GameObject ingredient = IngredientPool.Instance.GetFromPool(randomType);
-        if (ingredient == null) return;
+        string chosenType = GetRandomIngredient();
+        GameObject ingredient = IngredientPool.Instance.GetFromPool(chosenType);
+        if (ingredient == null)
+        {
+            Debug.LogWarning("No se encontró el prefab del tipo: " + chosenType);
+            return;
+        }
 
         float randomX = Random.Range(minX, maxX);
         ingredient.transform.position = new Vector2(randomX, spawnY);
@@ -31,5 +37,26 @@ public class IngredientSpawner : MonoBehaviour
         {
             rb.velocity = Vector2.down * Random.Range(2f, 6f);
         }
+    }
+
+    string GetRandomIngredient()
+    {
+        float totalWeight = 0f;
+        foreach (var ip in ingredientProbabilities)
+        {
+            totalWeight += ip.weight;
+        }
+
+        float randomValue = Random.Range(0, totalWeight);
+        float current = 0f;
+
+        foreach (var ip in ingredientProbabilities)
+        {
+            current += ip.weight;
+            if (randomValue <= current)
+                return ip.name;
+        }
+
+        return ingredientProbabilities[0].name; // Fallback
     }
 }
