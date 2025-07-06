@@ -5,7 +5,7 @@ using UnityEngine;
 public class IngredientCatcher : MonoBehaviour
 {
     public Transform towerAnchor; // Objeto vacío encima de la bandeja
-    public float verticalSpacing = 0.5f; // Espacio entre ingredientes
+    public float verticalSpacing = 0.1f; // Espacio (positivo) para que se superpongan
 
     private Transform lastIngredientTransform;
 
@@ -26,14 +26,12 @@ public class IngredientCatcher : MonoBehaviour
 
             if (lastIngredientTransform == null)
             {
-                // Primer ingrediente se apila sobre el TowerAnchor
                 stackPosition = towerAnchor.position;
             }
             else
             {
-                // Siguiente ingrediente se apila sobre el anterior
                 float height = lastIngredientTransform.GetComponent<SpriteRenderer>().bounds.size.y;
-                stackPosition = lastIngredientTransform.position + new Vector3(0f, height, 0f);
+                stackPosition = lastIngredientTransform.position + new Vector3(0f, height - verticalSpacing, 0f);
             }
 
             // Posicionar y hacer hijo del towerAnchor
