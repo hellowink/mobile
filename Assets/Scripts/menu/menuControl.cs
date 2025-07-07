@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class menuControl : MonoBehaviour
 {
+
+
     void Start()
     {
         
@@ -15,8 +17,21 @@ public class menuControl : MonoBehaviour
         
     }
 
+    
+
     public void PlayGame()
     {
+
+        if (staminaManager.Instance.TryUseStamina())
+        {
+            SceneManager.LoadScene("game");
+        }
+        else
+        {
+            // Ya se encarga el StaminaManager de mostrar el mensaje de "sin energía"
+            Debug.Log("No tienes energía suficiente");
+        }
+
         SceneManager.LoadScene("game"); 
     }
     public void GoShop()
