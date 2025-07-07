@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1029118934977774970}
   - component: {fileID: 1254761671729209947}
   - component: {fileID: 2324429894709253509}
+  - component: {fileID: 6207655772347181457}
   m_Layer: 6
   m_Name: lechuga
   m_TagString: Ingredient
@@ -158,3 +159,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9238599, y: 0.72248024}
   m_EdgeRadius: 0
+--- !u!114 &6207655772347181457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206164318362779528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2fb22b4f028934e91af4cc1a001d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBread: 0

@@ -5,27 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class menuControl : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-
     public void PlayGame()
     {
-        SceneManager.LoadScene("levelSelection"); // Asegúrate de que el nombre coincida exactamente con el de tu escena
+        SceneManager.LoadScene("game"); 
+    }
+    public void GoShop()
+    {
+        SceneManager.LoadScene("Shop"); 
+    }
+
+    public void Options()
+    {
+        SceneManager.LoadScene("Options");
+    }
+
+    public void Return()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void ExitGame()
     {
         Application.Quit();
-        Debug.Log("Exit pressed - only works in build"); // Esto no cerrará el juego en el editor
+        Debug.Log("Exit pressed - only works in build"); 
     }
 }
