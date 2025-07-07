@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a5880d31-5dea-4097-b96f-a854c60e8e3a\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Bonus\",\r\n      \"type\": \"bool\",\r\n     
+    \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"c30344f4-897b-4cb9-adfb-302f45d2402c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"MaxStamina\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"454d855a-12c9-46b8-8caf-f6fb0fb70de0\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Coins\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"50bf63b4-39a3-47d5-a256-b2d2f7caa0c3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"itemsDrop\",\r\n      \"type\": \"float\",\r\n      \"value\": 1.5\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c75ee133-ed9b-4bf0-852f-ce2601c30ba1\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Stamina\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 5\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a5880d31-5dea-4097-b96f-a854c60e8e3a\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Bonus\",\r\n      \"type\": \"bool\",\r\n     
+    \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"c30344f4-897b-4cb9-adfb-302f45d2402c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"MaxStamina\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"454d855a-12c9-46b8-8caf-f6fb0fb70de0\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Coins\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"50bf63b4-39a3-47d5-a256-b2d2f7caa0c3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"itemsDrop\",\r\n      \"type\": \"float\",\r\n      \"value\": 1.5\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c75ee133-ed9b-4bf0-852f-ce2601c30ba1\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Stamina\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 5\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"d8356c1f-1125-4df9-90e0-539001f1f243\",\r\n   
+    \"name\": \"production\",\r\n    \"id\": \"9ee684c8-e1a0-48cc-907c-949f4e8192d2\",\r\n   
+    \"isDefault\": true,\r\n    \"createdAt\": \"2025-04-21T17:37:47Z\",\r\n    \"updatedAt\":
+    \"2025-04-21T17:37:47Z\"\r\n  }\r\n]"
