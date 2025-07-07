@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Points")]
+    public int points = 0;
+    public TextMeshProUGUI pointsText;
+
     [Header("Lives")]
     public int maxLives = 5;
     private int currentLives;
@@ -27,7 +31,7 @@ public class GameManager : MonoBehaviour
         UpdateLivesUI();
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f; // Asegura que el tiempo corre al inicio
-        GameState.ResetPoints();
+        //GameState.ResetPoints();
     }
 
     public void LoseLife()
@@ -42,6 +46,17 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public void AddPoints(int amount)
+    {
+        points += amount;
+        UpdatePointsUI();
+    }
+
+    void UpdatePointsUI()
+    {
+        pointsText.text = "Points: " + points;
     }
 
     public void LoseAllLives()
@@ -66,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        GameState.ResetPoints(); // Reinicia puntos visibles
+        //GameState.ResetPoints(); // Reinicia puntos visibles
                                  // GameState.ResetCoins(); // Solo si querés borrar monedas de esta sesión
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

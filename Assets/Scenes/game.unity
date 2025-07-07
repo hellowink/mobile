@@ -1007,6 +1007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741971591}
   - component: {fileID: 741971592}
+  - component: {fileID: 741971593}
   m_Layer: 0
   m_Name: TowerAnchor
   m_TagString: Untagged
@@ -1074,6 +1075,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.078873, y: 0.15897396}
   m_EdgeRadius: 0
+--- !u!114 &741971593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741971590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9193441b5161a8a41930bbdcf045740f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &992192502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 285, y: 836}
+  m_AnchoredPosition: {x: -282.59998, y: 836}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992192504
@@ -2076,6 +2089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1b0cc44f7c06343a186a104cf4b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
+  pointsText: {fileID: 2062673776}
   maxLives: 5
   livesText: {fileID: 992192504}
   gameOverPanel: {fileID: 1559717475}
@@ -2248,7 +2263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 283.6, y: 735}
+  m_AnchoredPosition: {x: -284, y: 735}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2062673776
@@ -2271,7 +2286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'POINTS: 0'
+  m_text: 'POINTS:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2334,7 +2349,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -35.01216, w: 21.072674}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

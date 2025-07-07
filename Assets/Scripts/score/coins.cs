@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.RemoteConfig;
 using Unity.Services.RemoteConfig;
 
-public class coins : MonoBehaviour
+/*public class coins : MonoBehaviour
 {
     //// Start is called before the first frame update
     //void Start()
@@ -44,3 +44,4 @@ public class coins : MonoBehaviour
         return PlayerPrefs.GetInt("RemoteCoins", 0); // Fallback local si no está disponible aún
     }
 }
+*/

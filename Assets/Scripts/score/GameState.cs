@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameState
+/*public class GameState
 {
     public static int Points { get; private set; }
 
@@ -48,3 +48,4 @@ public class GameState
         Config.AddCoins(Points);
     }
 }
+*/

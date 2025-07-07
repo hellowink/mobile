@@ -35,10 +35,11 @@ public class IngredientCatcher : MonoBehaviour
 
         Debug.Log($"Es ingrediente válido: {ingredient.name}, pan: {ingredient.isBread}");
 
-        if (!ingredient.isBread)
+        /*if (!ingredient.isBread)
         {
             GameState.AddPoints(Config.coinPerItem);
         }
+        */
 
         // Frenar caída
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
@@ -112,18 +113,19 @@ else
         towerAnchor.DetachChildren();
         lastIngredientTransform = null;
 
-        int coinsEarned = Config.coinPerItem;
+        /*int coinsEarned = Config.coinPerItem;
 
         if (Config.bonusEventActive)
         {
             coinsEarned *= 2;
         }
+        */
 
-        GameState.CompleteSandwich();
+        //GameState.CompleteSandwich();
 
         // Sumar monedas del Remote Config
         //GameState.Coins += Config.coinPerItem;
-        Debug.Log("Monedas actuales: " + GameState.Coins);
+        //Debug.Log("Monedas actuales: " + GameState.Coins);
     }
 
     float GetHeight(Transform t)
