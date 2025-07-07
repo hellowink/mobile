@@ -42,7 +42,7 @@ public class Config : MonoBehaviour
     {
         var appConfig = RemoteConfigService.Instance.appConfig;
 
-        itemDropRate = appConfig.GetFloat("itemsDrop", 1.5f);
+        itemDropRate = appConfig.GetFloat("itemsDrop", 0.5f);
         coinPerItem = appConfig.GetInt("Coins", 10);
         staminaRechargeTimeMinutes = appConfig.GetInt("Stamina", 5);
         maxStamina = appConfig.GetInt("MaxStamina", 10);

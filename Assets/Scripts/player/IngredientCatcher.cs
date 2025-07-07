@@ -8,6 +8,14 @@ public class IngredientCatcher : MonoBehaviour
     public float verticalSpacing = 0.1f; // Espacio (positivo) para que se superpongan
 
     private Transform lastIngredientTransform;
+    private int totalCoins;
+
+    void Start()
+    {
+        // Cargar monedas guardadas o iniciar en 0
+        totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        Debug.Log("Monedas iniciales: " + totalCoins);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,6 +52,15 @@ public class IngredientCatcher : MonoBehaviour
             // Opcional: Desactivar colisión
             Collider2D col = other.GetComponent<Collider2D>();
             if (col != null) col.enabled = false;
+
+            AddCoins(Config.coinPerItem > 0 ? Config.coinPerItem : 100);
         }
+    }
+    void AddCoins(int amount)
+    {
+        totalCoins += amount;
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+        PlayerPrefs.Save();
+        Debug.Log("Monedas ganadas: +" + amount + " | Total: " + totalCoins);
     }
 }
