@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class bonusPoints : MonoBehaviour
 {
-    void Start()
-    {
-        // Aseguramos que empiece en false
-        Config.bonusEventActive = false;
+    public static bonusPoints Instance;
 
-        // Activamos el bonus por 10 segundos
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
+    public void ActivateBonus()
+    {
         StartCoroutine(ActivateBonusTemporarily());
     }
 

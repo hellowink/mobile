@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class bonusPlay : MonoBehaviour
 {
-    private bool isBonusActive = false;
+    public GameObject bonusPrefab;
+    public float spawnInterval = 10f;
+    public float spawnY = 10f;
 
-    void OnMouseDown()
+    private float minX, maxX;
+
+    void Start()
     {
-        // Evita reactivar el bonus si ya está activo
-        if (!isBonusActive)
-        {
-            StartCoroutine(ActivateBonusTemporarily());
-        }
+        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0));
+        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0));
+
+        minX = leftEdge.x;
+        maxX = rightEdge.x;
+
+        InvokeRepeating(nameof(SpawnBonus), 2f, spawnInterval);
     }
 
-    IEnumerator ActivateBonusTemporarily()
+    void SpawnBonus()
     {
-        isBonusActive = true;
-        Config.bonusEventActive = true;
-        Debug.Log("BONUS ACTIVADO");
+        float randomX = Random.Range(minX, maxX);
+        Vector2 spawnPosition = new Vector2(randomX, spawnY);
 
-        yield return new WaitForSeconds(10f);
+        GameObject bonus = Instantiate(bonusPrefab, spawnPosition, Quaternion.identity);
 
-        Config.bonusEventActive = false;
-        isBonusActive = false;
-        Debug.Log("BONUS FINALIZADO");
+        Rigidbody2D rb = bonus.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.down * Random.Range(2f, 4f);
+        }
     }
 }

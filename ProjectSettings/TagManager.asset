@@ -13,6 +13,7 @@ TagManager:
   - Hazard
   - TowerAnchor
   - background
+  - IngredientCatcher
   layers:
   - Default
   - TransparentFX

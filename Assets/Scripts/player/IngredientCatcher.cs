@@ -107,8 +107,17 @@ else
         towerAnchor.DetachChildren();
         lastIngredientTransform = null;
 
+        int coinsEarned = Config.coinPerItem;
+
+        if (Config.bonusEventActive)
+        {
+            coinsEarned *= 2;
+        }
+
+        GameState.Coins += coinsEarned;
+
         // Sumar monedas del Remote Config
-        GameState.Coins += Config.coinPerItem;
+        //GameState.Coins += Config.coinPerItem;
         Debug.Log("Monedas actuales: " + GameState.Coins);
     }
 
