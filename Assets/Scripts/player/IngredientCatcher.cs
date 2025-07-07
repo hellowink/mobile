@@ -29,6 +29,8 @@ public class IngredientCatcher : MonoBehaviour
             Destroy(gameObject);
     }
 
+    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ingredient"))
@@ -68,14 +70,14 @@ public class IngredientCatcher : MonoBehaviour
             AddCoins(Config.coinPerItem > 0 ? Config.coinPerItem : 100);
         }
     }
-<<<<<<< Updated upstream
+
     void AddCoins(int amount)
     {
         totalCoins += amount;
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.Save();
         Debug.Log("Monedas ganadas: +" + amount + " | Total: " + totalCoins);
-=======
+    }
 
     // 🔻 Remueve ingredientes desde arriba hacia abajo
     public void RemoveFromTower(int amount)
@@ -110,6 +112,6 @@ public class IngredientCatcher : MonoBehaviour
         {
             lastIngredientTransform = null;
         }
->>>>>>> Stashed changes
+
     }
 }
