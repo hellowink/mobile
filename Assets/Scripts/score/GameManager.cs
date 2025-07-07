@@ -43,6 +43,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoseAllLives()
+    {
+        currentLives = 0;
+        UpdateLivesUI();
+        GameOver();
+    }
+
     void UpdateLivesUI()
     {
         livesText.text = "Lives: " + Mathf.Max(currentLives, 0);

@@ -1,11 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientCatcher : MonoBehaviour
 {
-    public Transform towerAnchor; // Objeto vacío encima de la bandeja
-    public float verticalSpacing = 0.1f; // Espacio (positivo) para que se superpongan
+    public static IngredientCatcher Instance;
+
+    
+    public Transform towerAnchor; // Objeto vacÃ­o encima de la bandeja
+    public float verticalSpacing = 0.1f; // Espacio entre ingredientes (positivo = mÃ¡s juntos)
 
     private Transform lastIngredientTransform;
     private int totalCoins;
@@ -17,11 +20,20 @@ public class IngredientCatcher : MonoBehaviour
         Debug.Log("Monedas iniciales: " + totalCoins);
     }
 
+    void Awake()
+    {
+        // Singleton para acceder desde otros scripts
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ingredient"))
         {
-            // Detener física
+            // Detener fÃ­sica
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -29,7 +41,7 @@ public class IngredientCatcher : MonoBehaviour
                 rb.bodyType = RigidbodyType2D.Kinematic;
             }
 
-            // Calcular la posición donde se apilará el nuevo ingrediente
+            // Calcular la posiciÃ³n donde se apilarÃ¡ el nuevo ingrediente
             Vector3 stackPosition;
 
             if (lastIngredientTransform == null)
@@ -46,21 +58,58 @@ public class IngredientCatcher : MonoBehaviour
             other.transform.position = stackPosition;
             other.transform.SetParent(towerAnchor);
 
-            // Guardar como último ingrediente apilado
+            // Guardar como Ãºltimo ingrediente apilado
             lastIngredientTransform = other.transform;
 
-            // Opcional: Desactivar colisión
+            // Desactivar colisiÃ³n
             Collider2D col = other.GetComponent<Collider2D>();
             if (col != null) col.enabled = false;
 
             AddCoins(Config.coinPerItem > 0 ? Config.coinPerItem : 100);
         }
     }
+<<<<<<< Updated upstream
     void AddCoins(int amount)
     {
         totalCoins += amount;
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.Save();
         Debug.Log("Monedas ganadas: +" + amount + " | Total: " + totalCoins);
+=======
+
+    // ðŸ”» Remueve ingredientes desde arriba hacia abajo
+    public void RemoveFromTower(int amount)
+    {
+        int toRemove = Mathf.Min(amount, towerAnchor.childCount);
+
+        List<Transform> toDestroy = new List<Transform>();
+
+        // Guardamos primero los ingredientes a destruir
+        for (int i = 0; i < toRemove; i++)
+        {
+            int lastIndex = towerAnchor.childCount - 1 - i;
+            if (lastIndex >= 0)
+            {
+                Transform ingredient = towerAnchor.GetChild(lastIndex);
+                toDestroy.Add(ingredient);
+            }
+        }
+    
+        // Luego destruimos fuera del loop principal
+        foreach (Transform ingredient in toDestroy)
+        {
+            Destroy(ingredient.gameObject);
+        }
+
+        // Actualizamos la referencia correctamente
+        if (towerAnchor.childCount > 0)
+        {
+            lastIngredientTransform = towerAnchor.GetChild(towerAnchor.childCount - 1);
+        }
+        else
+        {
+            lastIngredientTransform = null;
+        }
+>>>>>>> Stashed changes
     }
 }
