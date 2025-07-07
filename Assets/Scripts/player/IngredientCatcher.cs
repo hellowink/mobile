@@ -86,7 +86,7 @@ else
         if (lastIngredientTransform != null && lastIngredientTransform.position.y > maxYLimit)
         {
             Debug.Log("¡Perdiste! El sándwich es demasiado alto.");
-            SceneManager.LoadScene("GameOver");
+            GameManager.Instance.LoseAllLives();
         }
     }
 

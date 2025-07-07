@@ -70,6 +70,6 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         Time.timeScale = 1f; // Reanuda el juego
-        SceneManager.LoadScene("Menú");
+        SceneManager.LoadScene("Menu");
     }
 }

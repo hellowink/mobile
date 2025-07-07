@@ -12,6 +12,7 @@ TagManager:
   - Menu
   - Hazard
   - TowerAnchor
+  - background
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - ingredients
   - player
   - bread
-  - 
+  - background
   - 
   - 
   - 

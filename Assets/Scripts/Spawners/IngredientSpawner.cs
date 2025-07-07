@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class IngredientSpawner : MonoBehaviour
 {
-   [Header("Probabilidades de ingredientes")]
+    [Header("Probabilidades de ingredientes")]
     public List<IngredientProbability> ingredientProbabilities;
 
     [Header("Spawning")]
     public float spawnInterval = 1.5f;
-    public float minX = -3f;
-    public float maxX = 3f;
     public float spawnY = 10f;
+
+    private float minX;
+    private float maxX;
 
     void Start()
     {
+        // Calcular bordes de la pantalla en coordenadas del mundo
+        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0));
+        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0));
+
+        minX = leftEdge.x;
+        maxX = rightEdge.x;
+
         InvokeRepeating(nameof(SpawnIngredient), 1f, spawnInterval);
     }
 
