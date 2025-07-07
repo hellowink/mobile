@@ -48,4 +48,20 @@ public class Config : MonoBehaviour
         maxStamina = appConfig.GetInt("MaxStamina", 10);
         bonusEventActive = appConfig.GetBool("Bonus", false);
     }
+
+    public static int TotalCoins
+    {
+        get => PlayerPrefs.GetInt("TotalCoins", 0);
+        private set
+        {
+            PlayerPrefs.SetInt("TotalCoins", value);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static void AddCoins(int amount)
+    {
+        TotalCoins += amount;
+        Debug.Log($"Monedas totales: {TotalCoins}");
+    }
 }

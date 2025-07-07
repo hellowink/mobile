@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -68,11 +69,12 @@ public class IngredientPool : MonoBehaviour
             {
                 GameObject obj = pool[i];
                 obj.SetActive(true);
+                ResetIngredient(obj); // ✅ Resetear estado físico
                 return obj;
             }
         }
 
-        // No hay objetos disponibles, crear uno nuevo
+        // Si no hay objetos disponibles, crear uno nuevo
         IngredientPoolData data = ingredientTypes.Find(x => x.name == typeName);
         if (data != null)
         {
@@ -87,17 +89,49 @@ public class IngredientPool : MonoBehaviour
             pooled.typeName = typeName;
 
             pool.Add(newObj);
+            ResetIngredient(newObj); // ✅ También acá
             return newObj;
         }
 
         return null;
     }
 
+    public void ResetIngredient(GameObject obj)
+    {
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 0f; // ajustá si tu juego usa otro valor
+        }
+
+        Collider2D col = obj.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+
+        obj.transform.rotation = Quaternion.identity;
+        obj.transform.SetParent(null);
+    }
+
     public void ReturnToPool(GameObject obj)
     {
+        var rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        var col = obj.GetComponent<Collider2D>();
+        if (col != null) col.enabled = true;
+
         obj.SetActive(false);
 
-        // Asegurarse de que se conoce a qu� tipo pertenece
         PooledIngredient pooled = obj.GetComponent<PooledIngredient>();
         if (pooled != null && !pools.ContainsKey(pooled.typeName))
         {

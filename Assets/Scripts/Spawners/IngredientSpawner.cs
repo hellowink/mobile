@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,9 +32,12 @@ public class IngredientSpawner : MonoBehaviour
         GameObject ingredient = IngredientPool.Instance.GetFromPool(chosenType);
         if (ingredient == null)
         {
-            Debug.LogWarning("No se encontr� el prefab del tipo: " + chosenType);
+            Debug.LogWarning("No se encontró el prefab del tipo: " + chosenType);
             return;
         }
+
+        // 🔹 RESETEAR el ingrediente al sacarlo del pool
+        IngredientPool.Instance.ResetIngredient(ingredient);  // 👈 AQUÍ LLAMÁS EL MÉTODO NUEVO
 
         float randomX = Random.Range(minX, maxX);
         ingredient.transform.position = new Vector2(randomX, spawnY);

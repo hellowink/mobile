@@ -523,6 +523,8 @@ MonoBehaviour:
     weight: 3
   - name: pan
     weight: 1
+  - name: completado
+    weight: 1
   spawnInterval: 1
   spawnY: 10
 --- !u!4 &76517538
@@ -578,6 +580,9 @@ MonoBehaviour:
     poolSize: 10
   - name: lechuga
     prefab: {fileID: 3206164318362779528, guid: 9751212b185047e4c9ef3c3b52fcd347, type: 3}
+    poolSize: 10
+  - name: completado
+    prefab: {fileID: 5259713178632093539, guid: 6c62a2a69b05e7e4b9e0f1b653c66c6b, type: 3}
     poolSize: 10
 --- !u!4 &135678604
 Transform:

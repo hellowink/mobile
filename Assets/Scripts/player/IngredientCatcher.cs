@@ -28,8 +28,12 @@ public class IngredientCatcher : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"Entró {other.name}");
+
         Ingredient ingredient = other.GetComponent<Ingredient>();
         if (ingredient == null) return;
+
+        Debug.Log($"Es ingrediente válido: {ingredient.name}, pan: {ingredient.isBread}");
 
         // Frenar caída
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
@@ -74,6 +78,7 @@ else
         // Si es pan, completar sándwich
         if (ingredient.isBread)
         {
+            Debug.Log("Llamando a CompleteSandwich");
             CompleteSandwich();
         }
 
@@ -96,12 +101,15 @@ else
 
         foreach (Transform child in towerAnchor)
         {
-            Destroy(child.gameObject);
+            IngredientPool.Instance.ReturnToPool(child.gameObject);
         }
 
+        towerAnchor.DetachChildren();
         lastIngredientTransform = null;
 
-        // Podés sumar puntos o reproducir efectos acá
+        // Sumar monedas del Remote Config
+        GameState.Coins += Config.coinPerItem;
+        Debug.Log("Monedas actuales: " + GameState.Coins);
     }
 
     float GetHeight(Transform t)
