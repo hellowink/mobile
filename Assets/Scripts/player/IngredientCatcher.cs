@@ -1,60 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientCatcher : MonoBehaviour
 {
-    public Transform stackPoint;
-    public float ingredientHeight = 0.5f;
+    public static IngredientCatcher Instance;
 
-    private List<GameObject> tower = new List<GameObject>();
+    public Transform towerAnchor;
+    public float verticalSpacing = 0.1f;
 
-    private void OnTriggerEnter(Collider other)
+    private Transform lastIngredientTransform;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ingredient"))
         {
-            CatchIngredient(other.gameObject);
-        }
-        else if (other.CompareTag("Hazard"))
-        {
-            RemoveFromTower(5);
-        }
-    }
-
-    void CatchIngredient(GameObject ingredient)
-    {
-        ingredient.transform.SetParent(stackPoint);
-
-        float yOffset = tower.Count * ingredientHeight;
-        ingredient.transform.localPosition = new Vector3(0, yOffset, 0);
-        ingredient.transform.localRotation = Quaternion.identity;
-
-        tower.Add(ingredient);
-    }
-
-    public void RemoveFromTower(int count)
-    {
-        int removeCount = Mathf.Min(count, tower.Count);
-
-        for (int i = 0; i < removeCount; i++)
-        {
-            int index = tower.Count - 1;
-            GameObject ing = tower[index];
-            tower.RemoveAt(index);
-            IngredientPool.Instance.ReturnToPool(ing);
-        }
-
-        RepositionTower();
-    }
-
-    void RepositionTower()
-    {
-        for (int i = 0; i < tower.Count; i++)
-        {
-            GameObject ing = tower[i];
-            if (ing != null)
+            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            if (rb != null)
             {
-                ing.transform.localPosition = new Vector3(0, i * ingredientHeight, 0);
+                rb.velocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Kinematic;
             }
+
+            Vector3 stackPosition;
+
+            if (lastIngredientTransform == null)
+            {
+                stackPosition = towerAnchor.position;
+            }
+            else
+            {
+                float height = lastIngredientTransform.GetComponent<SpriteRenderer>().bounds.size.y;
+                stackPosition = lastIngredientTransform.position + new Vector3(0f, height - verticalSpacing, 0f);
+            }
+
+            other.transform.position = stackPosition;
+            other.transform.SetParent(towerAnchor);
+
+            lastIngredientTransform = other.transform;
+
+            Collider2D col = other.GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
         }
     }
 }
