@@ -35,6 +35,11 @@ public class IngredientCatcher : MonoBehaviour
 
         Debug.Log($"Es ingrediente válido: {ingredient.name}, pan: {ingredient.isBread}");
 
+        if (!ingredient.isBread)
+        {
+            GameState.AddPoints(Config.coinPerItem);
+        }
+
         // Frenar caída
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -114,7 +119,7 @@ else
             coinsEarned *= 2;
         }
 
-        GameState.Coins += coinsEarned;
+        GameState.CompleteSandwich();
 
         // Sumar monedas del Remote Config
         //GameState.Coins += Config.coinPerItem;

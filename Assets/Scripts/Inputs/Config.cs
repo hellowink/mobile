@@ -9,7 +9,7 @@ public class Config : MonoBehaviour
     public struct userAttributes { }
     public struct appAttributes { }
 
-    public static float itemDropRate;
+    public static float pointsComplete;
     public static int coinPerItem;
     public static int staminaRechargeTimeMinutes;
     public static int maxStamina;
@@ -42,7 +42,7 @@ public class Config : MonoBehaviour
     {
         var appConfig = RemoteConfigService.Instance.appConfig;
 
-        itemDropRate = appConfig.GetFloat("itemsDrop", 0.5f);
+        pointsComplete = appConfig.GetFloat("points", 50);
         coinPerItem = appConfig.GetInt("Coins", 10);
         staminaRechargeTimeMinutes = appConfig.GetInt("Stamina", 5);
         maxStamina = appConfig.GetInt("MaxStamina", 10);

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         UpdateLivesUI();
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f; // Asegura que el tiempo corre al inicio
+        GameState.ResetPoints();
     }
 
     public void LoseLife()
@@ -63,7 +64,11 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // Reanuda el juego
+        Time.timeScale = 1f;
+
+        GameState.ResetPoints(); // Reinicia puntos visibles
+                                 // GameState.ResetCoins(); // Solo si querés borrar monedas de esta sesión
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
