@@ -1,38 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public enum HazardType
-{
-    Boot,
-    Can,
-    Bomb
-}
 
 public class Hazard : MonoBehaviour
 {
-    public HazardType hazardType;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TowerAnchor"))
+        if (other.CompareTag("Player"))
         {
-            switch (hazardType)
+            IngredientCatcher catcher = other.GetComponent<IngredientCatcher>();
+            if (catcher != null)
             {
-                case HazardType.Boot:
-                case HazardType.Can:
-                    // Quita 5 ingredientes de la torre
-                    IngredientCatcher.Instance.RemoveFromTower(5);
-                    break;
-
-                case HazardType.Bomb:
-                    // Hace perder todas las vidas instantáneamente
-                    GameManager.Instance.LoseAllLives();
-                    break;
+                catcher.RemoveFromTower(5);
             }
 
-            // Destruye el objeto una vez aplicada la penalización
-            Destroy(gameObject);
+            // Volver el hazard al pool (si usás pooling)
+            gameObject.SetActive(false);
         }
     }
 }

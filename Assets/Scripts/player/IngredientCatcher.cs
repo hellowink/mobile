@@ -1,117 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientCatcher : MonoBehaviour
 {
-    public static IngredientCatcher Instance;
+    public Transform stackPoint;
+    public float ingredientHeight = 0.5f;
 
-    
-    public Transform towerAnchor; // Objeto vacío encima de la bandeja
-    public float verticalSpacing = 0.1f; // Espacio entre ingredientes (positivo = más juntos)
+    private List<GameObject> tower = new List<GameObject>();
 
-    private Transform lastIngredientTransform;
-    private int totalCoins;
-
-    void Start()
-    {
-        // Cargar monedas guardadas o iniciar en 0
-        totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
-        Debug.Log("Monedas iniciales: " + totalCoins);
-    }
-
-    void Awake()
-    {
-        // Singleton para acceder desde otros scripts
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-
-    
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ingredient"))
         {
-            // Detener física
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = Vector2.zero;
-                rb.bodyType = RigidbodyType2D.Kinematic;
-            }
-
-            // Calcular la posición donde se apilará el nuevo ingrediente
-            Vector3 stackPosition;
-
-            if (lastIngredientTransform == null)
-            {
-                stackPosition = towerAnchor.position;
-            }
-            else
-            {
-                float height = lastIngredientTransform.GetComponent<SpriteRenderer>().bounds.size.y;
-                stackPosition = lastIngredientTransform.position + new Vector3(0f, height - verticalSpacing, 0f);
-            }
-
-            // Posicionar y hacer hijo del towerAnchor
-            other.transform.position = stackPosition;
-            other.transform.SetParent(towerAnchor);
-
-            // Guardar como último ingrediente apilado
-            lastIngredientTransform = other.transform;
-
-            // Desactivar colisión
-            Collider2D col = other.GetComponent<Collider2D>();
-            if (col != null) col.enabled = false;
-
-            AddCoins(Config.coinPerItem > 0 ? Config.coinPerItem : 100);
+            CatchIngredient(other.gameObject);
+        }
+        else if (other.CompareTag("Hazard"))
+        {
+            RemoveFromTower(5);
         }
     }
 
-    void AddCoins(int amount)
+    void CatchIngredient(GameObject ingredient)
     {
-        totalCoins += amount;
-        PlayerPrefs.SetInt("TotalCoins", totalCoins);
-        PlayerPrefs.Save();
-        Debug.Log("Monedas ganadas: +" + amount + " | Total: " + totalCoins);
+        ingredient.transform.SetParent(stackPoint);
+
+        float yOffset = tower.Count * ingredientHeight;
+        ingredient.transform.localPosition = new Vector3(0, yOffset, 0);
+        ingredient.transform.localRotation = Quaternion.identity;
+
+        tower.Add(ingredient);
     }
 
-    // 🔻 Remueve ingredientes desde arriba hacia abajo
-    public void RemoveFromTower(int amount)
+    public void RemoveFromTower(int count)
     {
-        int toRemove = Mathf.Min(amount, towerAnchor.childCount);
+        int removeCount = Mathf.Min(count, tower.Count);
 
-        List<Transform> toDestroy = new List<Transform>();
-
-        // Guardamos primero los ingredientes a destruir
-        for (int i = 0; i < toRemove; i++)
+        for (int i = 0; i < removeCount; i++)
         {
-            int lastIndex = towerAnchor.childCount - 1 - i;
-            if (lastIndex >= 0)
+            int index = tower.Count - 1;
+            GameObject ing = tower[index];
+            tower.RemoveAt(index);
+            IngredientPool.Instance.ReturnToPool(ing);
+        }
+
+        RepositionTower();
+    }
+
+    void RepositionTower()
+    {
+        for (int i = 0; i < tower.Count; i++)
+        {
+            GameObject ing = tower[i];
+            if (ing != null)
             {
-                Transform ingredient = towerAnchor.GetChild(lastIndex);
-                toDestroy.Add(ingredient);
+                ing.transform.localPosition = new Vector3(0, i * ingredientHeight, 0);
             }
         }
-    
-        // Luego destruimos fuera del loop principal
-        foreach (Transform ingredient in toDestroy)
-        {
-            IngredientPool.Instance.ReturnToPool(ingredient.gameObject);
-        }
-
-        // Actualizamos la referencia correctamente
-        if (towerAnchor.childCount > 0)
-        {
-            lastIngredientTransform = towerAnchor.GetChild(towerAnchor.childCount - 1);
-        }
-        else
-        {
-            lastIngredientTransform = null;
-        }
-
     }
 }
