@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class ReturnToPool : MonoBehaviour
 {
+
+    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ingredient"))
         {
             IngredientPool.Instance.ReturnToPool(other.gameObject);
+
+            // Restar vida
+            GameManager.Instance.LoseLife();
         }
     }
+
+   
 }
