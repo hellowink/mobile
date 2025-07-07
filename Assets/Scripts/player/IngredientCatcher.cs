@@ -100,7 +100,7 @@ public class IngredientCatcher : MonoBehaviour
         // Luego destruimos fuera del loop principal
         foreach (Transform ingredient in toDestroy)
         {
-            Destroy(ingredient.gameObject);
+            IngredientPool.Instance.ReturnToPool(ingredient.gameObject);
         }
 
         // Actualizamos la referencia correctamente
