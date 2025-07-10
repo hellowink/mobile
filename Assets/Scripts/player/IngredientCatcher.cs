@@ -56,11 +56,7 @@ float newHeight = GetHeight(other.transform);
 
 if (lastIngredientTransform == null)
 {
-    stackPosition = new Vector3(
-        towerAnchor.position.x,
-        towerAnchor.position.y + newHeight / 2f,
-        0f
-    );
+    stackPosition = new Vector3(towerAnchor.position.x,towerAnchor.position.y + newHeight / 2f,0f);
 }
 else
 {
