@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public GameObject gameOverPanel;
 
+    [Header("Bonus Points")]
+    public bool isBonusActive = false;
+    public float bonusDuration = 3f;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -30,8 +35,38 @@ public class GameManager : MonoBehaviour
         currentLives = maxLives;
         UpdateLivesUI();
         gameOverPanel.SetActive(false);
-        Time.timeScale = 1f; // Asegura que el tiempo corre al inicio
-        //GameState.ResetPoints();
+        Time.timeScale = 1f;
+        UpdatePointsUI();
+    }
+
+    public void AddPoints(int amount)
+    {
+        if (isBonusActive)
+        {
+            amount *= 2;
+            Debug.Log("BONUS ACTIVO: Duplicando puntos!");
+        }
+        else
+        {
+            Debug.Log("BONUS NO activo.");
+        }
+
+        points += amount;
+        UpdatePointsUI();
+    }
+
+    public void ActivateBonus()
+    {
+        StartCoroutine(BonusCoroutine());
+    }
+
+    private IEnumerator BonusCoroutine()
+    {
+        isBonusActive = true;
+        Debug.Log("BONUS ACTIVADO!");
+        yield return new WaitForSeconds(bonusDuration);
+        isBonusActive = false;
+        Debug.Log("BONUS FINALIZADO");
     }
 
     public void LoseLife()
@@ -39,7 +74,7 @@ public class GameManager : MonoBehaviour
         if (currentLives <= 0) return;
 
         currentLives--;
-        currentLives = Mathf.Max(0, currentLives); // Protección extra
+        currentLives = Mathf.Max(0, currentLives);
         UpdateLivesUI();
 
         if (currentLives == 0)
@@ -48,22 +83,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddPoints(int amount)
-    {
-        points += amount;
-        UpdatePointsUI();
-    }
-
-    void UpdatePointsUI()
-    {
-        pointsText.text = "Points: " + points;
-    }
-
     public void LoseAllLives()
     {
         currentLives = 0;
         UpdateLivesUI();
         GameOver();
+    }
+
+    void UpdatePointsUI()
+    {
+        pointsText.text = "Points: " + points;
     }
 
     void UpdateLivesUI()
@@ -74,22 +103,18 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0f; // Pausa el juego
+        Time.timeScale = 0f;
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-
-        //GameState.ResetPoints(); // Reinicia puntos visibles
-                                 // GameState.ResetCoins(); // Solo si querés borrar monedas de esta sesión
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ReturnToMenu()
     {
-        Time.timeScale = 1f; // Reanuda el juego
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 }

@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589dc48f33919a84fa3e213ac7b2fe37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusPrefab: {fileID: 6835153536333664008, guid: f5c8e61845eeb4445973085744456c93, type: 3}
+  bonusPrefab: {fileID: 1086652183}
   spawnInterval: 10
   spawnY: 10
 --- !u!1 &135678602
@@ -1367,7 +1367,6 @@ GameObject:
   - component: {fileID: 1041379839}
   - component: {fileID: 1041379838}
   - component: {fileID: 1041379837}
-  - component: {fileID: 1041379841}
   m_Layer: 5
   m_Name: TextPoint
   m_TagString: Untagged
@@ -1458,20 +1457,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1041379841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041379836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd39ccab84ac9a4c9355fd43dd3c5f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointsText: {fileID: 2062673776}
-  coinsText: {fileID: 0}
 --- !u!1 &1055581075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,6 +1532,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055581075}
   m_CullTransparentMesh: 1
+--- !u!1 &1086652183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4238221733322120083, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+  m_PrefabInstance: {fileID: 1280201461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1117421613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1733,6 +1723,63 @@ MonoBehaviour:
   verticalOffset: 3
   centerX: 0
   smoothSpeed: 5
+--- !u!1001 &1280201461
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186273576746175620, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238221733322120083, guid: aa504fe523596e943994ba2c935e6976, type: 3}
+      propertyPath: m_Name
+      value: Bonus (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa504fe523596e943994ba2c935e6976, type: 3}
 --- !u!1 &1391844865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2141,8 @@ MonoBehaviour:
   maxLives: 5
   livesText: {fileID: 992192504}
   gameOverPanel: {fileID: 1559717475}
+  isBonusActive: 0
+  bonusDuration: 3
 --- !u!4 &1771383062
 Transform:
   m_ObjectHideFlags: 0
@@ -2581,7 +2630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861284179121240582, guid: 7ec53c445541f3543b3005d3a3f52b0c, type: 3}
       propertyPath: m_TagString
-      value: IngredientCatcher
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3535259100209622154, guid: 7ec53c445541f3543b3005d3a3f52b0c, type: 3}
       propertyPath: m_SortingOrder
@@ -2704,3 +2753,4 @@ SceneRoots:
   - {fileID: 2023168790}
   - {fileID: 184556201}
   - {fileID: 2643358777194176173}
+  - {fileID: 1280201461}
