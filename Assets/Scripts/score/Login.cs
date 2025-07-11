@@ -5,7 +5,7 @@ using TMPro;
 
 public class Login : MonoBehaviour
 {
-    public TMP_InputField usernameInput;
+    /*public TMP_InputField usernameInput;
 
     public void OnLoginButtonPressed()
     {
@@ -16,4 +16,5 @@ public class Login : MonoBehaviour
             SessionManager.Instance.StartSession(username);
         }
     }
+    */
 }

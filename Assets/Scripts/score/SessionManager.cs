@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    public static SessionManager Instance;
+    /*public static SessionManager Instance;
     public string currentUser;
     public int savedPoints;
 
@@ -40,4 +40,5 @@ public class SessionManager : MonoBehaviour
     {
         return "UserPoints_" + currentUser;
     }
+    */
 }

@@ -25,18 +25,7 @@ public class GameManager : MonoBehaviour
     public float bonusDuration = 3f;
 
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    
     
 
     void Start()
@@ -66,10 +55,11 @@ public class GameManager : MonoBehaviour
         UpdatePointsUI();
 
         // Guardar puntos en laa sesión actual si hay usuario activo
-        if (SessionManager.Instance != null && !string.IsNullOrEmpty(SessionManager.Instance.currentUser))
+        /*if (SessionManager.Instance != null && !string.IsNullOrEmpty(SessionManager.Instance.currentUser))
         {
             SessionManager.Instance.SavePoints(points);
         }
+        */
     }
 
     public void ActivateBonus()
