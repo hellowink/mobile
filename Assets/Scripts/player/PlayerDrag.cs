@@ -11,7 +11,7 @@ public class PlayerDrag : MonoBehaviour
 
     [Header("Configuración de Deslizamiento")]
     [Range(1f, 20f)]
-    public float slideSpeed = 10f; // Velocidad de seguimiento (ajustable)
+    public float slideSpeed = 1.3f; // Velocidad de seguimiento (ajustable)
 
     private Vector3 targetPosition;
 
@@ -19,23 +19,25 @@ public class PlayerDrag : MonoBehaviour
     {
         cam = Camera.main;
 
-        // Calcular el ancho del collider
+        // Cargar slideSpeed desde PlayerPrefs
+        slideSpeed = PlayerPrefs.GetFloat("SlideSpeed", 1.3f); // 1.3f es el valor por defecto
+
+        // Calcular ancho del collider
         BoxCollider2D col = GetComponent<BoxCollider2D>();
         if (col != null)
         {
             halfColliderWidth = col.bounds.extents.x;
         }
-        else
-        {
-            Debug.LogWarning("BoxCollider2D no encontrado en el Player.");
-        }
 
-        // Inicializar posición objetivo
         targetPosition = transform.position;
     }
 
+    
+
     void Update()
     {
+        
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
