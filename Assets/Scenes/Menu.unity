@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 86618952}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -122.4, y: 884.9, z: 0}
+  m_LocalPosition: {x: 131, y: 63, z: 0}
   m_LocalScale: {x: 28.12342, y: 28.123419, z: 28.123419}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,8 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f5e5bcda4cb6c4984dc0fa6d20ba8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStamina: 3
-  currentStamina: 3
+  maxStamina: 8
+  currentStamina: 8
   staminaFill: {fileID: 1998000523}
   staminaText: {fileID: 0}
   noEnergyPanel: {fileID: 1751665012}
@@ -1378,7 +1378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.3, y: 876.8}
+  m_AnchoredPosition: {x: 364.7, y: 54.899963}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177080999
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3/3
+  m_text: 8/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2248,7 +2248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344.9, y: 879.3}
+  m_AnchoredPosition: {x: -91.5, y: 57.399963}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1811867369
@@ -2323,7 +2323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344.19998, y: 879.30005}
+  m_AnchoredPosition: {x: -90.79999, y: 57.400024}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1998000522
