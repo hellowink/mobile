@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public int currentPoints;
+
     public float playerSlideSpeed = 1.3f;
 
     [Header("Points")]
@@ -20,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject gameOverPanel;
+    public TextMeshProUGUI livesText;
+
+    private Button restartButton;
+    private Button menuButton;
 
     [Header("Bonus Points")]
     public bool isBonusActive = false;
@@ -49,15 +55,9 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    void Start()
-    {
-        // En Start podés hacer cosas que solo querés al principio,
-        // pero el reset lo hacemos en OnSceneLoaded para que sea seguro
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Actualizar referencias UI buscando por nombre en la escena cargada
+        // Referencias de UI
         pointsText = GameObject.Find("PointsText")?.GetComponent<TextMeshProUGUI>();
         livesText = GameObject.Find("LivesText")?.GetComponent<TextMeshProUGUI>();
         gameOverPanel = GameObject.Find("GameOverPanel");
@@ -65,10 +65,26 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
-        // Reiniciar valores de vidas y puntos al cargar escena
+        // Referencias de botones
+        restartButton = GameObject.Find("RestartButton")?.GetComponent<Button>();
+        menuButton = GameObject.Find("MenuButton")?.GetComponent<Button>();
+
+        // Asignar acciones a botones
+        if (restartButton != null)
+        {
+            restartButton.onClick.RemoveAllListeners();
+            restartButton.onClick.AddListener(RestartGame);
+        }
+
+        if (menuButton != null)
+        {
+            menuButton.onClick.RemoveAllListeners();
+            menuButton.onClick.AddListener(ReturnToMenu);
+        }
+
+        // Reset de juego
         currentLives = maxLives;
         points = 0;
-
         UpdateLivesUI();
         UpdatePointsUI();
 
@@ -132,8 +148,6 @@ public class GameManager : MonoBehaviour
             pointsText.text = "Points: " + points;
     }
 
-    public TextMeshProUGUI livesText; // Lo agregué aquí para que compile
-
     void UpdateLivesUI()
     {
         if (livesText != null)
@@ -142,8 +156,18 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        coinsManager.Instance.AgregarPuntosPartida(currentPoints);
+
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
+
+        // Esperar un frame para que los botones estén listos
+        StartCoroutine(PauseAfterUIUpdate());
+    }
+
+    private IEnumerator PauseAfterUIUpdate()
+    {
+        yield return null;
         Time.timeScale = 0f;
     }
 
@@ -159,3 +183,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 }
+

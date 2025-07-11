@@ -422,8 +422,6 @@ MonoBehaviour:
   - name: pan
     weight: 1
   spawnInterval: 1
-  minX: 1
-  maxX: 3
   spawnY: 10
 --- !u!4 &76517538
 Transform:
@@ -1686,7 +1684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1771383061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,9 +1697,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1b0cc44f7c06343a186a104cf4b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSlideSpeed: 1.3
+  points: 0
+  pointsText: {fileID: 0}
   maxLives: 5
-  livesText: {fileID: 992192504}
   gameOverPanel: {fileID: 1559717475}
+  livesText: {fileID: 992192504}
+  isBonusActive: 0
+  bonusDuration: 3
 --- !u!4 &1771383062
 Transform:
   m_ObjectHideFlags: 0
@@ -2028,8 +2031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241095913dd942a41a090ba155e66168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stackPoint: {fileID: 0}
-  ingredientHeight: 0.5
+  towerAnchor: {fileID: 0}
+  verticalSpacing: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
