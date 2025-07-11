@@ -17,8 +17,15 @@ public class staminaManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -51,10 +58,10 @@ public class staminaManager : MonoBehaviour
 
     void UpdateStaminaUI()
     {
+        if (staminaFill == null || staminaText == null) return;
+
         float fillAmount = (float)currentStamina / maxStamina;
         staminaFill.fillAmount = fillAmount;
-
-        if (staminaText != null)
-            staminaText.text = "Energía: " + currentStamina + "/" + maxStamina;
+        staminaText.text = "Energía: " + currentStamina + "/" + maxStamina;
     }
 }

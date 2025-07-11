@@ -32,7 +32,6 @@ public class menuControl : MonoBehaviour
             Debug.Log("No tienes energía suficiente");
         }
 
-        SceneManager.LoadScene("game"); 
     }
     public void GoShop()
     {
