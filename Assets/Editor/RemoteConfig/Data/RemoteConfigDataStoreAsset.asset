@@ -12,30 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8847953e-47cb-4cb6-a30a-e4d1cf737244\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d3ce81a7-6474-4123-900a-6564bcb74e30\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Bonus\",\r\n      \"type\": \"bool\",\r\n     
     \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"91b21645-67a6-4372-a29f-e2ce1dba44d0\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"17aed5e7-8f9e-47a1-a7a5-cf3f811cde73\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"MaxStamina\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5078eece-af1e-48b7-b2d2-fd7d4e490a91\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"08f2b8a1-06eb-4f10-9262-fa1eb62a1f44\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Coins\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4202d8e1-38c4-4cc6-afa9-70b249f4b90e\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"0dce0bc0-ebc3-4763-bb5b-fb3b7a4fbc55\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"itemsDrop\",\r\n      \"type\": \"float\",\r\n      \"value\": 0.5\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"86dd6a78-61b9-4a20-be60-ddff293fb111\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"ff38fd26-d3d2-48cd-8258-ff5af6660142\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Stamina\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8847953e-47cb-4cb6-a30a-e4d1cf737244\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d3ce81a7-6474-4123-900a-6564bcb74e30\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Bonus\",\r\n      \"type\": \"bool\",\r\n     
     \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"91b21645-67a6-4372-a29f-e2ce1dba44d0\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"17aed5e7-8f9e-47a1-a7a5-cf3f811cde73\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"MaxStamina\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5078eece-af1e-48b7-b2d2-fd7d4e490a91\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"08f2b8a1-06eb-4f10-9262-fa1eb62a1f44\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Coins\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4202d8e1-38c4-4cc6-afa9-70b249f4b90e\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"0dce0bc0-ebc3-4763-bb5b-fb3b7a4fbc55\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"itemsDrop\",\r\n      \"type\": \"float\",\r\n      \"value\": 0.5\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"86dd6a78-61b9-4a20-be60-ddff293fb111\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"ff38fd26-d3d2-48cd-8258-ff5af6660142\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Stamina\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"d8356c1f-1125-4df9-90e0-539001f1f243\",\r\n   

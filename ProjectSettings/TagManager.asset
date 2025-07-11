@@ -18,11 +18,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - cheackpoint
+  - player
   - Water
   - UI
   - ingredients
-  - player
+  - cheackpoint
   - bread
   - background
   - 
