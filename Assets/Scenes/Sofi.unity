@@ -671,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1189197955
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   androidGameId: 5893628
   iosGameId: 5893629
-  isTesting: 0
+  isTesting: 1
 --- !u!4 &1690421485
 Transform:
   m_ObjectHideFlags: 0
@@ -1419,6 +1419,10 @@ PrefabInstance:
     - target: {fileID: 6056371351006865771, guid: 5c3a215f238b56d41b109276f9209958, type: 3}
       propertyPath: m_Name
       value: Bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056371351006865771, guid: 5c3a215f238b56d41b109276f9209958, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
