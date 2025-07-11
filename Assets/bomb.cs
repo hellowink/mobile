@@ -6,15 +6,6 @@ public class bomb : MonoBehaviour
 {
     
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        
-
-        if (other.CompareTag("Hazard"))
-        {
-            GameManager.Instance.AddPoints(-50);
-
-        }
-    }
+    
     
 }

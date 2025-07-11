@@ -24,11 +24,20 @@ public class GameManager : MonoBehaviour
     public bool isBonusActive = false;
     public float bonusDuration = 3f;
 
+
     void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+    
 
     void Start()
     {
@@ -39,7 +48,7 @@ public class GameManager : MonoBehaviour
         UpdatePointsUI();
     }
 
-    
+
     public void AddPoints(int amount)
     {
         if (isBonusActive)
@@ -52,8 +61,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("BONUS NO activo.");
         }
 
+
         points += amount;
         UpdatePointsUI();
+
+        // Guardar puntos en laa sesión actual si hay usuario activo
+        if (SessionManager.Instance != null && !string.IsNullOrEmpty(SessionManager.Instance.currentUser))
+        {
+            SessionManager.Instance.SavePoints(points);
+        }
     }
 
     public void ActivateBonus()
@@ -91,7 +107,7 @@ public class GameManager : MonoBehaviour
         GameOver();
     }
 
-    void UpdatePointsUI()
+    public void UpdatePointsUI()
     {
         pointsText.text = "Points: " + points;
     }
