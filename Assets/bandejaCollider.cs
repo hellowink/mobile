@@ -23,6 +23,12 @@ public class Tray : MonoBehaviour
     {
         if (!canCollect) return;
 
+        if (other.CompareTag("Hazard"))
+        {
+            GameManager.Instance.AddPoints(-50);
+
+        }
+
         if (other.CompareTag("Ingredient"))
         {
             GameManager.Instance.AddPoints(10);
