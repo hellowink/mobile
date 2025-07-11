@@ -6,7 +6,7 @@ using UnityEngine;
 public class AdsManager : MonoBehaviour
 {
     public InitializeAds initializeAds;
-    public InterstitialAds interstitialAds;
+    //public InterstitialAds interstitialAds;
     public RewardedAds rewardedAds;
 
     public static AdsManager Instance { get; private set; }
@@ -21,14 +21,14 @@ public class AdsManager : MonoBehaviour
         else Destroy(gameObject);
 
         rewardedAds.LoadRewardedAd();
-        interstitialAds.LoadInterstitialAd();
+        //interstitialAds.LoadInterstitialAd();
 
     }
 
-    public void ShowInterstitialAd()
-    {
-        interstitialAds.ShowInterstitialAd();
-    }
+    //public void ShowInterstitialAd()
+    //{
+    //    interstitialAds.ShowInterstitialAd();
+    //}
 
     public void ShowRewardedAd()
     {

@@ -10,6 +10,8 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
 
     private string adUnitId;
 
+    public System.Action OnRewardedAdCompleted;
+
     private void Awake()
     {
 #if UNITY_IOS
@@ -37,7 +39,7 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
     #region LoadCallbacks
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log("Interstitial Ad Loaded");
+        Debug.Log("Rewards Ad Loaded");
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message) { }
@@ -56,7 +58,10 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
             showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Ads Fully Watched .....");
+            OnRewardedAdCompleted?.Invoke();
         }
+
+        LoadRewardedAd();
     }
     #endregion
 
