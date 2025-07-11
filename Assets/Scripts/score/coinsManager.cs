@@ -19,16 +19,17 @@ public class coinsManager : MonoBehaviour
             Debug.LogWarning("CoinsManager duplicado, destruyendo: " + gameObject.name);
             Destroy(gameObject);
         }
+
+        Debug.Log("CoinsManager Instance is " + (coinsManager.Instance == null ? "NULL" : "NOT NULL"));
     }
 
-    // Llámalo cuando termina la partida
     public void AgregarPuntosPartida(int puntosGanados)
     {
         int puntosTotales = ObtenerPuntosTotales();
         puntosTotales += puntosGanados;
         PlayerPrefs.SetInt("Coins", puntosTotales);
         PlayerPrefs.Save();
-        Debug.Log("Puntos acumulados: " + puntosTotales);
+        Debug.Log("[CoinsManager] Puntos acumulados guardados: " + puntosTotales);
     }
 
     public int ObtenerPuntosTotales()

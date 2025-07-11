@@ -59,12 +59,21 @@ public class IngredientCatcher : MonoBehaviour
         Collider2D col = other.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
+        // Aquí sumás puntos cuando el ingrediente es atrapado
+        if (GameManager.Instance != null)
+        {
+            int puntosPorIngrediente = 10; // o lo que quieras asignar
+            GameManager.Instance.AddPoints(puntosPorIngrediente);
+            Debug.Log($"Ingrediente atrapado, sumando {puntosPorIngrediente} puntos.");
+        }
+
         if (ingredient.isBread)
         {
             CompleteSandwich();
         }
 
         CheckLoseCondition();
+
     }
 
     void CheckLoseCondition()

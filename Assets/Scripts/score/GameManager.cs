@@ -36,12 +36,12 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persistir entre escenas
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("CoinsManager inicializado");
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
-            return;
         }
     }
 
@@ -57,10 +57,22 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Referencias de UI
         pointsText = GameObject.Find("PointsText")?.GetComponent<TextMeshProUGUI>();
         livesText = GameObject.Find("LivesText")?.GetComponent<TextMeshProUGUI>();
         gameOverPanel = GameObject.Find("GameOverPanel");
+
+        if (scene.name == "Menu")
+        {
+            if (coinsManager.Instance != null)
+            {
+                int totalPuntos = coinsManager.Instance.ObtenerPuntosTotales();
+                Debug.Log($"[Menu] Total de puntos guardados: {totalPuntos}");
+            }
+            else
+            {
+                Debug.LogWarning("[Menu] coinsManager.Instance es null");
+            }
+        }
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
@@ -82,12 +94,16 @@ public class GameManager : MonoBehaviour
             menuButton.onClick.AddListener(ReturnToMenu);
         }
 
-        // Reset de juego
+        // Reset de juego y sincronización
         currentLives = maxLives;
-        points = 0;
+
+        // Leer puntos guardados desde coinsManager
+        points = coinsManager.Instance != null ? coinsManager.Instance.ObtenerPuntosTotales() : 0;
+
         UpdateLivesUI();
         UpdatePointsUI();
 
+        Time.timeScale = 1f;
         Time.timeScale = 1f;
     }
 
@@ -105,6 +121,12 @@ public class GameManager : MonoBehaviour
 
         points += amount;
         UpdatePointsUI();
+
+        if (coinsManager.Instance != null)
+        {
+            coinsManager.Instance.AgregarPuntosPartida(amount);
+            Debug.Log("[GameManager] Suma a coinsManager: " + coinsManager.Instance.ObtenerPuntosTotales());
+        }
     }
 
     public void ActivateBonus()
@@ -156,12 +178,20 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        coinsManager.Instance.AgregarPuntosPartida(currentPoints);
+        if (coinsManager.Instance != null)
+        {
+            coinsManager.Instance.AgregarPuntosPartida(points);
+            Debug.Log($"[GameOver] Puntos sumados esta partida: {points}");
+            Debug.Log($"[GameOver] Total acumulado en coinsManager: {coinsManager.Instance.ObtenerPuntosTotales()}");
+        }
+        else
+        {
+            Debug.LogWarning("[GameOver] coinsManager.Instance es null");
+        }
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
 
-        // Esperar un frame para que los botones estén listos
         StartCoroutine(PauseAfterUIUpdate());
     }
 
