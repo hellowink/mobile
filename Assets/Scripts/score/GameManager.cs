@@ -19,42 +19,61 @@ public class GameManager : MonoBehaviour
     private int currentLives;
 
     [Header("UI")]
-    public TextMeshProUGUI livesText;
     public GameObject gameOverPanel;
 
     [Header("Bonus Points")]
     public bool isBonusActive = false;
     public float bonusDuration = 3f;
 
-
-    
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Importante si querés que persista entre escenas
+            DontDestroyOnLoad(gameObject); // Persistir entre escenas
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Start()
     {
-        maxLives = PlayerPrefs.GetInt("MaxLives", 5);
-        currentLives = maxLives;
-
-        UpdateLivesUI();
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(false);
-        Time.timeScale = 1f;
-        UpdatePointsUI();
+        // En Start podés hacer cosas que solo querés al principio,
+        // pero el reset lo hacemos en OnSceneLoaded para que sea seguro
     }
 
-    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Actualizar referencias UI buscando por nombre en la escena cargada
+        pointsText = GameObject.Find("PointsText")?.GetComponent<TextMeshProUGUI>();
+        livesText = GameObject.Find("LivesText")?.GetComponent<TextMeshProUGUI>();
+        gameOverPanel = GameObject.Find("GameOverPanel");
 
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
+
+        // Reiniciar valores de vidas y puntos al cargar escena
+        currentLives = maxLives;
+        points = 0;
+
+        UpdateLivesUI();
+        UpdatePointsUI();
+
+        Time.timeScale = 1f;
+    }
 
     public void AddPoints(int amount)
     {
@@ -68,16 +87,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("BONUS NO activo.");
         }
 
-
         points += amount;
         UpdatePointsUI();
-
-        // Guardar puntos en laa sesión actual si hay usuario activo
-        /*if (SessionManager.Instance != null && !string.IsNullOrEmpty(SessionManager.Instance.currentUser))
-        {
-            SessionManager.Instance.SavePoints(points);
-        }
-        */
     }
 
     public void ActivateBonus()
@@ -117,17 +128,22 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePointsUI()
     {
-        pointsText.text = "Points: " + points;
+        if (pointsText != null)
+            pointsText.text = "Points: " + points;
     }
+
+    public TextMeshProUGUI livesText; // Lo agregué aquí para que compile
 
     void UpdateLivesUI()
     {
-        livesText.text = "Lives: " + Mathf.Max(currentLives, 0);
+        if (livesText != null)
+            livesText.text = "Lives: " + Mathf.Max(currentLives, 0);
     }
 
     void GameOver()
     {
-        gameOverPanel.SetActive(true);
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
