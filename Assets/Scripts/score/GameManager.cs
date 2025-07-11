@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         UpdatePointsUI();
     }
 
+    
     public void AddPoints(int amount)
     {
         if (isBonusActive)

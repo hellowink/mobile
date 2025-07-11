@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Tray : MonoBehaviour
 {
-    private bool canCollect = false;
+    public bool canCollect = false;
 
     private void Start()
     {
@@ -29,4 +29,6 @@ public class Tray : MonoBehaviour
             
         }
     }
+
+    
 }

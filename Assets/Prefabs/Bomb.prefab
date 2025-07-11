@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3224373132243038532}
   - component: {fileID: 8676144593196150932}
   - component: {fileID: 4017360555017093763}
-  - component: {fileID: 8160584144857636952}
-  - component: {fileID: 4237651323848509080}
+  - component: {fileID: 4491908206531796103}
+  - component: {fileID: -2654597142623620277}
   m_Layer: 0
-  m_Name: bomb 1
+  m_Name: Bomb
   m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,20 +150,7 @@ CircleCollider2D:
   m_Offset: {x: -1.0633198, y: -0.2873845}
   serializedVersion: 2
   m_Radius: 5.3941574
---- !u!114 &8160584144857636952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372627177106439196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702ddda006f71b845806beb4ba7f0256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBread: 0
---- !u!114 &4237651323848509080
+--- !u!114 &4491908206531796103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,3 +163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBread: 1
+--- !u!114 &-2654597142623620277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372627177106439196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702ddda006f71b845806beb4ba7f0256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tray: {fileID: 0}
