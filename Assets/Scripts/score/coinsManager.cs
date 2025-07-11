@@ -11,10 +11,12 @@ public class coinsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // si querés mantenerlo entre escenas
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("CoinsManager inicializado");
         }
-        else
+        else if (Instance != this)
         {
+            Debug.LogWarning("CoinsManager duplicado, destruyendo: " + gameObject.name);
             Destroy(gameObject);
         }
     }
