@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public float playerSlideSpeed = 1.3f;
+
     [Header("Points")]
     public int points = 0;
     public TextMeshProUGUI pointsText;
@@ -26,16 +28,32 @@ public class GameManager : MonoBehaviour
 
 
     
-    
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Importante si querés que persista entre escenas
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
+        maxLives = PlayerPrefs.GetInt("MaxLives", 5);
         currentLives = maxLives;
+
         UpdateLivesUI();
-        gameOverPanel.SetActive(false);
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
         UpdatePointsUI();
     }
+
+    
 
 
     public void AddPoints(int amount)
